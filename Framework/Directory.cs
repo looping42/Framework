@@ -11,7 +11,7 @@ namespace Framework.DirectoryMethod
     Fichier       :  DirectoryMethod
     Auteur        :  ds
     Mise à jour   :  10/10/2015
-    Fonction      :  création de répértoire
+    Fonction      :  Création de répértoire
     ******************************************************************/
 
     public class DirectoryMethod

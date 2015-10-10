@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.Logger
+namespace Framework.Log
 {
     /****************************************************************
     Classe Logger :  Permet la logs des erreurs ,infos ,etc
@@ -22,43 +22,40 @@ namespace Framework.Logger
     {
         public static void Error(string message)
         {
-            WriteEntry(message, "Error");
+            WriteEntry("Error", message);
         }
 
         public static void Error(Exception ex)
         {
-            WriteEntry(ex.Message, "Error");
+            WriteEntry("Error", ex.Message);
         }
 
         public static void Warning(string message)
         {
-            WriteEntry(message, "Warning");
+            WriteEntry("Warning", message);
         }
 
         public static void Info(string message)
         {
-            WriteEntry(message, "Info");
+            WriteEntry("Info", message);
         }
 
-        private static void WriteEntry(string message, string type)
+        private static void WriteEntry(string type, string message)
         {
             try
             {
-                DirectoryMethod.DirectoryMethod.CreateDirectory(Properties.Settings.Default.Logs);
-                using (TextWriterTraceListener writer = new TextWriterTraceListener(Path.Combine(Properties.Settings.Default.Logs, DateExtension.DateExtension.DayToday() + "-Logs.txt")))
+                DirectoryMethod.DirectoryMethod.CreateDirectory(Properties.Settings.Default.FMLogs);
+                using (TextWriterTraceListener writer = new TextWriterTraceListener(Path.Combine(Properties.Settings.Default.FMLogs, DateExtension.DateExtension.DayToday() + "- Logs.txt")))
                 {
                     Trace.AutoFlush = true;
                     Trace.Listeners.Add(writer);
+                    string messagetoWrite = string.Format("{0} - {1}        {2}", DateExtension.DateExtension.HourToday(), type, message);
+
                     //Message du fichier de logs et debug Output
-                    Trace.WriteLine(string.Format("{0} - {1}  :  {2}",
-                                          DateExtension.DateExtension.DayHourToday(),
-                                          type,
-                                          message));
+                    Trace.WriteLine(messagetoWrite);
+
                     //Message console
-                    ConsoleListener.ConsoleListener.WriteInConsole(string.Format("{0} - {1}  :  {2}",
-                                          DateExtension.DateExtension.HourToday(),
-                                          type,
-                                          message));
+                    ConsoleListener.ConsoleListener.WriteInConsole(messagetoWrite);
 
                     Trace.Listeners.Remove(writer);
                 }

@@ -26,9 +26,18 @@ namespace Framework.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(".\\Logs")]
-        public string Logs {
+        public string FMLogs {
             get {
-                return ((string)(this["Logs"]));
+                return ((string)(this["FMLogs"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
+        public string FMMailer {
+            get {
+                return ((string)(this["FMMailer"]));
             }
         }
     }
