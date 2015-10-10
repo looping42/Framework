@@ -24,5 +24,10 @@ namespace Framework.DateExtension
         {
             return DateTime.Now.ToString("yyyy-MM-dd");
         }
+
+        public static string HourToday()
+        {
+            return DateTime.Now.ToString("HH:mm:ss");
+        }
     }
 }

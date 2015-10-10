@@ -22,22 +22,22 @@ namespace Framework.Logger
     {
         public static void Error(string message)
         {
-            WriteEntry(message, "error");
+            WriteEntry(message, "Error");
         }
 
         public static void Error(Exception ex)
         {
-            WriteEntry(ex.Message, "error");
+            WriteEntry(ex.Message, "Error");
         }
 
         public static void Warning(string message)
         {
-            WriteEntry(message, "warning");
+            WriteEntry(message, "Warning");
         }
 
         public static void Info(string message)
         {
-            WriteEntry(message, "info");
+            WriteEntry(message, "Info");
         }
 
         private static void WriteEntry(string message, string type)
@@ -47,23 +47,16 @@ namespace Framework.Logger
                 DirectoryMethod.DirectoryMethod.CreateDirectory(Properties.Settings.Default.Logs);
                 using (TextWriterTraceListener writer = new TextWriterTraceListener(Path.Combine(Properties.Settings.Default.Logs, DateExtension.DateExtension.DayToday() + "-Logs.txt")))
                 {
-                    DefaultTraceListener temp = new DefaultTraceListener();
-
-                    // Define a trace listener to direct trace output from this method
-                    // to the console.
-                    ConsoleTraceListener consoleTracer;
-                    consoleTracer = new ConsoleTraceListener(true);
-
                     Trace.AutoFlush = true;
                     Trace.Listeners.Add(writer);
-                    Trace.Indent();
-                    Trace.WriteLine(string.Format("{0} : {1}  :  {2}",
+                    //Message du fichier de logs et debug Output
+                    Trace.WriteLine(string.Format("{0} - {1}  :  {2}",
                                           DateExtension.DateExtension.DayHourToday(),
                                           type,
                                           message));
-
-                    consoleTracer.WriteLine(string.Format("{0},{1},{2}",
-                                          DateExtension.DateExtension.DayHourToday(),
+                    //Message console
+                    ConsoleListener.ConsoleListener.WriteInConsole(string.Format("{0} - {1}  :  {2}",
+                                          DateExtension.DateExtension.HourToday(),
                                           type,
                                           message));
 
