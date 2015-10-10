@@ -11,6 +11,7 @@ namespace Framework
         public void method()
         {
             string s = "";
+            string temp = "";
         }
     }
 }
