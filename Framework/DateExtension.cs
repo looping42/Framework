@@ -25,3 +25,4 @@ namespace Framework.DateExtension
             return DateTime.Now.ToString("yyyy-MM-dd");
         }
     }
+}
