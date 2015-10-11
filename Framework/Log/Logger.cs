@@ -1,4 +1,5 @@
-﻿using Microsoft.Build.Framework;
+﻿using Framework.DirectoryMethod;
+using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,10 @@ namespace Framework.Log
         {
             try
             {
-                DirectoryMethod.DirectoryMethod.CreateDirectory(Properties.Settings.Default.FMLogs);
-                using (TextWriterTraceListener writer = new TextWriterTraceListener(Path.Combine(Properties.Settings.Default.FMLogs, DateExtension.DateExtension.DayToday() + "- Logs.txt")))
+                DirectoryMethod.DirectoryMethod temp = new DirectoryMethod.DirectoryMethod();
+
+                temp.CreateDirectory(Properties.Settings.Default.FMLogs);
+                using (TextWriterTraceListener writer = new TextWriterTraceListener(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Properties.Settings.Default.FMLogs, DateExtension.DateExtension.DayToday() + "- Logs.txt")))
                 {
                     Trace.AutoFlush = true;
                     Trace.Listeners.Add(writer);
