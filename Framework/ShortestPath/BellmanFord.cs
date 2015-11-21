@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Framework.ShortestPath
 {
+    /// <summary>
+    /// Algorithme de bellman ford
+    /// Trouve le plus court chemin pour chaque noeud en partant du noeud de départ
+    /// la liste des noeud contenant le plus court chemin se trouve dans la List<Node> nodes en scannant les noeuds parents
+    /// </summary>
     public class BellmanFord
     {
         public List<Edge> edges { get; set; }
@@ -79,7 +84,7 @@ namespace Framework.ShortestPath
         }
 
         /// <summary>
-        /// Alogorythme de Bellman-Ford
+        /// Algorithme de Bellman-Ford
         /// </summary>
         public void bellmanFord()
         {
