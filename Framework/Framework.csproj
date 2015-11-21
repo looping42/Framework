@@ -105,6 +105,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ShortestPath\Edge.cs" />
+    <Compile Include="ShortestPath\Node.cs" />
+    <Compile Include="ShortestPath\ShortestPath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
