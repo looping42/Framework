@@ -13,6 +13,6 @@ namespace Framework
         /// </summary>
         public static string CurrentApplication = AppDomain.CurrentDomain.BaseDirectory;
 
-        //kc
+        //kcjjkkj
     }
 }
