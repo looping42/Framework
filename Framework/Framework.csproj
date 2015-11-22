@@ -109,6 +109,7 @@
     <Compile Include="ShortestPath\Edge.cs" />
     <Compile Include="ShortestPath\Node.cs" />
     <Compile Include="ShortestPath\BellmanFord.cs" />
+    <Compile Include="ShortestPath\UtilShortestPath.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
