@@ -13,48 +13,33 @@ namespace Framework.ShortestPath
         /// </summary>
         public int NumberOfNodes { get; set; }
 
-        public int[,] graphNode { get; set; }
-
-        public int[,] nodeTampon { get; set; }
+        public int[,] TwoDimensionArray { get; set; }
 
         public int MaxValue { get; set; }
 
         public void floyd_warshall()
         {
             int i, j, k;
-            nodeTampon = new int[NumberOfNodes, NumberOfNodes];
-            for (i = 0; i < NumberOfNodes; i++)
-            {
-                for (j = 0; j < NumberOfNodes; j++)
-                {
-                    nodeTampon[i, j] = graphNode[i, j];
-                }
-            }
             for (k = 0; k < NumberOfNodes; k++)
             {
                 // Pick all vertices as source one by one
                 for (i = 0; i < NumberOfNodes; i++)
                 {
-                    // Pick all vertices as destination for the
-                    // above picked source
                     for (j = 0; j < NumberOfNodes; j++)
                     {
-                        // If vertex k is on the shortest path from
-                        // i to j, then update the value of dist[i][j]
-                        if (nodeTampon[i, j] > (nodeTampon[i, k] + nodeTampon[k, j]))
+                        if (TwoDimensionArray[i, j] > (TwoDimensionArray[i, k] + TwoDimensionArray[k, j]))
                         {
-                            nodeTampon[i, j] = nodeTampon[i, k] + nodeTampon[k, j];
+                            TwoDimensionArray[i, j] = TwoDimensionArray[i, k] + TwoDimensionArray[k, j];
                         }
                     }
                 }
             }
-            printSolution(nodeTampon);
+            printSolution(TwoDimensionArray);
         }
 
         private void printSolution(int[,] nodeTampon)
         {
-            Console.WriteLine("Following matrix shows the shortest " +
-                              "distances between every pair of vertices");
+            Console.WriteLine("La matrice montre le noeud et la distance entre chaque noeud ");
             for (int i = 0; i < NumberOfNodes; ++i)
             {
                 for (int j = 0; j < NumberOfNodes; ++j)
