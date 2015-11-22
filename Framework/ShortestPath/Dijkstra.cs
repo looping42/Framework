@@ -109,8 +109,6 @@ namespace Framework.ShortestPath
                 Node smallest = ExtractMin();
                 nodeTampon.Remove(smallest);
 
-                var temp = GetNeighbors(smallest);
-
                 foreach (Node edgeNeighbour in GetNeighbors(smallest))
                 {
                     RelaxDijkstra(smallest, edgeNeighbour);

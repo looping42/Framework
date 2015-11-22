@@ -107,6 +107,7 @@
     </Compile>
     <Compile Include="ShortestPath\Dijkstra.cs" />
     <Compile Include="ShortestPath\Edge.cs" />
+    <Compile Include="ShortestPath\FloydWarshall.cs" />
     <Compile Include="ShortestPath\Node.cs" />
     <Compile Include="ShortestPath\BellmanFord.cs" />
     <Compile Include="ShortestPath\UtilShortestPath.cs" />
