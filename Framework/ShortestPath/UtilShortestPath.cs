@@ -12,7 +12,11 @@ namespace Framework.ShortestPath
 
         public List<Node> nodes { get; set; }
 
-        //Noeud de départ
+        public List<Node> nodeTampon { get; set; }
+
+        /// <summary>
+        /// Position Noeud de départ
+        /// </summary>
         public int posNodeStart { get; set; }
 
         /// <summary>

@@ -6,68 +6,18 @@ using System.Threading.Tasks;
 
 namespace Framework.ShortestPath
 {
-    public class Dijkstra
+    /// <summary>
+    /// Algorithme de Dijkstra
+    /// Trouve le plus court chemin pour chaque noeud en partant du noeud de départ(int)
+    /// la liste des noeud contenant le plus court chemin se trouve dans la List<Node> nodes en scannant les noeuds parents
+    /// </summary>
+    public class Dijkstra : UtilShortestPath
     {
-        //Noeud de départ
-        public int posNodeStart { get; set; }
-
-        public List<Edge> edges { get; set; }
-
-        public List<Node> nodes { get; set; }
-
-        public List<Node> nodeTampon { get; set; }
-
         /// <summary>
-        /// Initialisation Bellman-Ford
+        /// Extrait le noeud dont la valeur est la plus petite
+        /// et le remove de la liste des noeuds tampon
         /// </summary>
-        public void initialize()
-        {
-            foreach (Node n in nodes)
-            {
-                n.Value = int.MaxValue;
-                n.parent = null;
-            }
-            nodes[posNodeStart].Value = 0;
-        }
-
-        /// <summary>
-        /// Relâche Les noeuds ,si la valeur du Noeud 2 est supérieur à la valeur du Noeud 1 + (valeur noeud1 +noued2 )
-        /// affecte cette valeur au noeud 2 et le noeud 1 devient son parent
-        /// </summary>
-        /// <param name="n1">Noeud 1</param>
-        /// <param name="n2">Noeud 2</param>
-        private void relax(Node n1, Node n2)
-        {
-            if (n2.Value > (n1.Value + getWeight(n1, n2)))
-            {
-                n2.Value = n1.Value + getWeight(n1, n2);
-                n2.parent = n1;
-            }
-        }
-
-        /// <summary>
-        ///retourne le poid entre 2 noeuds
-        /// </summary>
-        /// <param name="n1">Noeud 1</param>
-        /// <param name="n2">Noeud 2</param>
-        /// <returns>poids entre les 2 noeuds</returns>
-        public int getWeight(Node n1, Node n2)
-        {
-            int value = 0;
-            foreach (Edge edge in edges)
-            {
-                if (edge.A == n1 && edge.B == n2)
-                {
-                    value = edge.Weight;
-                }
-                else if (edge.B == n1 && edge.A == n2)
-                {
-                    value = edge.Weight;
-                }
-            }
-            return value;
-        }
-
+        /// <returns></returns>
         public Node ExtractMin()
         {
             double min = double.PositiveInfinity;
@@ -89,7 +39,7 @@ namespace Framework.ShortestPath
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public List<Node> getNeighbors(Node node)
+        public List<Node> GetNeighbors(Node node)
         {
             List<Node> neighbors = new List<Node>();
 
@@ -107,6 +57,47 @@ namespace Framework.ShortestPath
             return neighbors;
         }
 
+        /// <summary>
+        /// retourne le poid entre 2 noeuds
+        /// </summary>
+        /// <param name="n1">Noeud 1</param>
+        /// <param name="n2">Noeud 2</param>
+        /// <returns>poid entre les 2 noeuds</returns>
+        public int GetWeightDijkstra(Node n1, Node n2)
+        {
+            int value = 0;
+            foreach (Edge edge in edges)
+            {
+                if (edge.A == n1 && edge.B == n2)
+                {
+                    value = edge.Weight;
+                }
+                else if (edge.B == n1 && edge.A == n2)
+                {
+                    value = edge.Weight;
+                }
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// Relâche Les noeuds ,si la valeur du Noeud 2 est supérieur à la valeur du Noeud 1 + (valeur noeud1 +noued2 )
+        /// affecte cette valeur au noeud 2 et le noeud 1 devient son parent
+        /// </summary>
+        /// <param name="n1">Noeud 1</param>
+        /// <param name="n2">Noeud 2</param>
+        public void RelaxDijkstra(Node n1, Node n2)
+        {
+            if (n2.Value > (n1.Value + GetWeightDijkstra(n1, n2)))
+            {
+                n2.Value = n1.Value + GetWeightDijkstra(n1, n2);
+                n2.parent = n1;
+            }
+        }
+
+        /// <summary>
+        /// Algo Dijkstra
+        /// </summary>
         public void DijkstraWork()
         {
             initialize();
@@ -118,11 +109,11 @@ namespace Framework.ShortestPath
                 Node smallest = ExtractMin();
                 nodeTampon.Remove(smallest);
 
-                //var temp = getNeighbors(smallest);
+                var temp = GetNeighbors(smallest);
 
-                foreach (Node edgeNeighbour in getNeighbors(smallest))
+                foreach (Node edgeNeighbour in GetNeighbors(smallest))
                 {
-                    relax(smallest, edgeNeighbour);
+                    RelaxDijkstra(smallest, edgeNeighbour);
                 }
             }
         }
