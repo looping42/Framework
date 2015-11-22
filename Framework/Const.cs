@@ -12,5 +12,7 @@ namespace Framework
         /// Application en cours
         /// </summary>
         public static string CurrentApplication = AppDomain.CurrentDomain.BaseDirectory;
+
+        //kc
     }
 }
