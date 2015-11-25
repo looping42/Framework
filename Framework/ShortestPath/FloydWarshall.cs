@@ -9,7 +9,7 @@ namespace Framework.ShortestPath
     public class FloydWarshall
     {
         /// <summary>
-        /// Nombre de noeuds(Sur une ligne)
+        /// Nombre de noeuds max du tableau à 2 dimension
         /// </summary>
         public int NumberOfNodes { get; set; }
 
@@ -25,7 +25,7 @@ namespace Framework.ShortestPath
             int i, j, k;
             for (k = 0; k < NumberOfNodes; k++)
             {
-                // Pick all vertices as source one by one
+                //Passage sur tout les Noeud un par un
                 for (i = 0; i < NumberOfNodes; i++)
                 {
                     for (j = 0; j < NumberOfNodes; j++)
@@ -34,20 +34,20 @@ namespace Framework.ShortestPath
                         {
                             TwoDimensionArray[i, j] = TwoDimensionArray[i, k] + TwoDimensionArray[k, j];
                             PathTwoDimensionArray[i, j] = PathTwoDimensionArray[k, j];
-
-                            //Console.Error.Write("shortest path i to j : " + PathTwoDimensionArray[i, j]);
                         }
                     }
-                    //Console.Error.WriteLine();
                 }
             }
+            List<int> rez = new List<int>();
+            getPath(1, 2, ref rez);
 
-            //get();
-            //Path(i, j);
-            printSolutionV2(PathTwoDimensionArray);
+            //printSolutionV2(PathTwoDimensionArray);
             //printSolution(TwoDimensionArray);
         }
 
+        /// <summary>
+        /// Peuple le tableau de sortie qui va permettre  de construire le plus court chemin
+        /// </summary>
         private void Populatearray()
         {
             PathTwoDimensionArray = new int[NumberOfNodes, NumberOfNodes];
@@ -67,31 +67,43 @@ namespace Framework.ShortestPath
             }
         }
 
-        private void get()
+        private StringBuilder path(int u, int v)
         {
-            for (int i = 0; i < NumberOfNodes; i++)
+            StringBuilder rez = new StringBuilder();
+            if (PathTwoDimensionArray[u, v] == -1)
             {
-                for (int j = 0; j < NumberOfNodes; j++)
-                {
-                    getPath(i, j);
-                }
+                return rez.Append("Pas de path");
             }
+            else
+            {
+                path(u, PathTwoDimensionArray[u, v]);
+                path(PathTwoDimensionArray[u, v], u);
+            }
+            return rez;
         }
 
-        private void getPath(int i, int j)
+        /// <summary>
+        /// Choix du plus court chemin entre 2 noeuds
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        private void getPath(int i, int j, ref List<int> rez)
         {
             if (i == j)
             {
-                Console.WriteLine(i);
+                //Console.WriteLine(i + ";");
+                rez.Add(i);
             }
-            else if (PathTwoDimensionArray[i, j] == 0)
+            else if (PathTwoDimensionArray[i, j] == -1)
             {
+                rez.Add(-1);
                 Console.WriteLine("pas de path");
             }
             else
             {
-                getPath(i, PathTwoDimensionArray[i, j]);
-                Console.WriteLine(j);
+                getPath(i, PathTwoDimensionArray[i, j], ref rez);
+                //Console.WriteLine(j + ";");
+                rez.Add(j);
             }
         }
 
