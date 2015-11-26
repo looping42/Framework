@@ -32,7 +32,8 @@ namespace Framework.ShortestPath
         /// <summary>
         /// Algorithme de Bellman-Ford
         /// </summary>
-        public void BellmanFordWork()
+        /// <returns>btrue si valide , false si cycle négatif</returns>
+        public bool BellmanFordWork()
         {
             initialize();
 
@@ -45,11 +46,11 @@ namespace Framework.ShortestPath
             }
             if (DetectingNegativeCycles())
             {
-                Log.Logger.Info("Cycle Négatif : non");
+                return true;
             }
             else
             {
-                throw new Exception("nous sommes dans un Cycle Négatif");
+                return false;
             }
         }
     }

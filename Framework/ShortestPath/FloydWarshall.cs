@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Framework.ShortestPath
 {
+    /// <summary>
+    /// Recherche du plus court chemin dans un tableau à 2 dimensions
+    /// Socke le résultat dans le PathTwoDimensionArray
+    /// </summary>
     public class FloydWarshall
     {
         /// <summary>
@@ -19,7 +23,10 @@ namespace Framework.ShortestPath
 
         public int MaxValue { get; set; }
 
-        public void floyd_warshall()
+        /// <summary>
+        /// Recherche du plus court chemin
+        /// </summary>
+        public void Floyd_warshallWork()
         {
             Populatearray();
             int i, j, k;
@@ -38,11 +45,6 @@ namespace Framework.ShortestPath
                     }
                 }
             }
-            List<int> rez = new List<int>();
-            getPath(1, 2, ref rez);
-
-            //printSolutionV2(PathTwoDimensionArray);
-            //printSolution(TwoDimensionArray);
         }
 
         /// <summary>
@@ -67,49 +69,33 @@ namespace Framework.ShortestPath
             }
         }
 
-        private StringBuilder path(int u, int v)
-        {
-            StringBuilder rez = new StringBuilder();
-            if (PathTwoDimensionArray[u, v] == -1)
-            {
-                return rez.Append("Pas de path");
-            }
-            else
-            {
-                path(u, PathTwoDimensionArray[u, v]);
-                path(PathTwoDimensionArray[u, v], u);
-            }
-            return rez;
-        }
-
         /// <summary>
         /// Choix du plus court chemin entre 2 noeuds
         /// </summary>
         /// <param name="i"></param>
         /// <param name="j"></param>
-        private void getPath(int i, int j, ref List<int> rez)
+        public void GetPath(int i, int j, ref List<int> rez)
         {
             if (i == j)
             {
-                //Console.WriteLine(i + ";");
                 rez.Add(i);
             }
             else if (PathTwoDimensionArray[i, j] == -1)
             {
                 rez.Add(-1);
-                Console.WriteLine("pas de path");
             }
             else
             {
-                getPath(i, PathTwoDimensionArray[i, j], ref rez);
-                //Console.WriteLine(j + ";");
+                GetPath(i, PathTwoDimensionArray[i, j], ref rez);
                 rez.Add(j);
             }
         }
 
-        private void printSolutionV2(int[,] PathTwoDimensionArray)
+        /// <summary>
+        ///Chemin comprenant le noeud précedent
+        /// </summary>
+        private void PathPrecedent()
         {
-            Console.Error.WriteLine("La path pour chaque noeud ");
             for (int i = 0; i < NumberOfNodes; ++i)
             {
                 for (int j = 0; j < NumberOfNodes; ++j)
@@ -120,19 +106,22 @@ namespace Framework.ShortestPath
             }
         }
 
-        private void printSolution(int[,] nodeTampon)
+        /// <summary>
+        /// Affiche la distance entre chaque noeud
+        /// Comptabilise les lien entre les noeuds
+        /// </summary>
+        private void DistBetweenNode()
         {
-            Console.WriteLine("La matrice montre le noeud et la distance entre chaque noeud ");
             for (int i = 0; i < NumberOfNodes; ++i)
             {
                 for (int j = 0; j < NumberOfNodes; ++j)
                 {
-                    if (nodeTampon[i, j] == MaxValue)
-                        Console.Write("INF ");
+                    if (TwoDimensionArray[i, j] == MaxValue)
+                        Console.Error.Write("INF ");
                     else
-                        Console.Write(nodeTampon[i, j] + "   ");
+                        Console.Error.Write(TwoDimensionArray[i, j] + "   ");
                 }
-                Console.WriteLine();
+                Console.Error.WriteLine();
             }
         }
     }
