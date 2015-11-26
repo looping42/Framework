@@ -13,7 +13,7 @@ namespace Framework.ShortestPath
     public class FloydWarshall
     {
         /// <summary>
-        /// Nombre de noeuds max du tableau à 2 dimension
+        /// Nombre de noeuds max du tableau à 2 dimensions
         /// </summary>
         public int NumberOfNodes { get; set; }
 
@@ -32,7 +32,7 @@ namespace Framework.ShortestPath
             int i, j, k;
             for (k = 0; k < NumberOfNodes; k++)
             {
-                //Passage sur tout les Noeud un par un
+                //Passage sur tout les Noeuds un par un
                 for (i = 0; i < NumberOfNodes; i++)
                 {
                     for (j = 0; j < NumberOfNodes; j++)
@@ -72,8 +72,9 @@ namespace Framework.ShortestPath
         /// <summary>
         /// Choix du plus court chemin entre 2 noeuds
         /// </summary>
-        /// <param name="i"></param>
-        /// <param name="j"></param>
+        /// <param name="i">Noeud de départ</param>
+        /// <param name="j">Noeud d'arrivée</param>
+        /// <param name="List<int> rez">Passage par référence de la liste de résultat</param>
         public void GetPath(int i, int j, ref List<int> rez)
         {
             if (i == j)
