@@ -95,6 +95,7 @@
     <Compile Include="Const.cs" />
     <Compile Include="DateExtension.cs" />
     <Compile Include="Directory.cs" />
+    <Compile Include="FlotMaximum\FordFulkerson.cs" />
     <Compile Include="Img\Image.cs" />
     <Compile Include="Log\ConsoleListener.cs" />
     <Compile Include="Log\Logger.cs" />

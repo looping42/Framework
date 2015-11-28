@@ -19,9 +19,9 @@ namespace Framework.ShortestPath
         /// <returns>booléen</returns>
         public bool DetectingNegativeCycles()
         {
-            foreach (Edge edge in edges)
+            foreach (Edge edge in Edges)
             {
-                if (edge.B.Value > edge.A.Value + getWeight(edge.A, edge.B))
+                if (edge.B.Value > edge.A.Value + GetWeight(edge.A, edge.B))
                 {
                     return false;
                 }
@@ -35,13 +35,13 @@ namespace Framework.ShortestPath
         /// <returns>btrue si valide , false si cycle négatif</returns>
         public bool BellmanFordWork()
         {
-            initialize();
+            Initialize();
 
-            for (int i = 0; i <= nodes.Count - 2; i++)
+            for (int i = 0; i <= Nodes.Count - 2; i++)
             {
-                foreach (Edge edge in edges)
+                foreach (Edge edge in Edges)
                 {
-                    relax(edge.A, edge.B);
+                    Relax(edge.A, edge.B);
                 }
             }
             if (DetectingNegativeCycles())

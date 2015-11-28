@@ -23,7 +23,7 @@ namespace Framework.ShortestPath
             double min = double.PositiveInfinity;
             Node toRemove = new Node();
 
-            foreach (Node node in nodeTampon)
+            foreach (Node node in NodeTampon)
             {
                 if (node.Value < min)
                 {
@@ -43,7 +43,7 @@ namespace Framework.ShortestPath
         {
             List<Node> neighbors = new List<Node>();
 
-            foreach (Edge e in edges)
+            foreach (Edge e in Edges)
             {
                 if (e.A.Equals(node))
                 {
@@ -66,7 +66,7 @@ namespace Framework.ShortestPath
         public int GetWeightDijkstra(Node n1, Node n2)
         {
             int value = 0;
-            foreach (Edge edge in edges)
+            foreach (Edge edge in Edges)
             {
                 if (edge.A == n1 && edge.B == n2)
                 {
@@ -100,14 +100,14 @@ namespace Framework.ShortestPath
         /// </summary>
         public void DijkstraWork()
         {
-            initialize();
-            nodeTampon = new List<Node>();
-            nodeTampon.AddRange(nodes);
+            Initialize();
+            NodeTampon = new List<Node>();
+            NodeTampon.AddRange(Nodes);
 
-            while (nodeTampon.Count > 0)
+            while (NodeTampon.Count > 0)
             {
                 Node smallest = ExtractMin();
-                nodeTampon.Remove(smallest);
+                NodeTampon.Remove(smallest);
 
                 foreach (Node edgeNeighbour in GetNeighbors(smallest))
                 {

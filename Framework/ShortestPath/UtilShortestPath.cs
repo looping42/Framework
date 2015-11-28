@@ -8,28 +8,28 @@ namespace Framework.ShortestPath
 {
     public class UtilShortestPath
     {
-        public List<Edge> edges { get; set; }
+        public List<Edge> Edges { get; set; }
 
-        public List<Node> nodes { get; set; }
+        public List<Node> Nodes { get; set; }
 
-        public List<Node> nodeTampon { get; set; }
+        public List<Node> NodeTampon { get; set; }
 
         /// <summary>
         /// Position Noeud de départ
         /// </summary>
-        public int posNodeStart { get; set; }
+        public int PosNodeStart { get; set; }
 
         /// <summary>
         /// Initialisation Bellman-Ford
         /// </summary>
-        public void initialize()
+        public void Initialize()
         {
-            foreach (Node n in nodes)
+            foreach (Node n in Nodes)
             {
                 n.Value = int.MaxValue;
                 n.parent = null;
             }
-            nodes[posNodeStart].Value = 0;
+            Nodes[PosNodeStart].Value = 0;
         }
 
         /// <summary>
@@ -38,10 +38,10 @@ namespace Framework.ShortestPath
         /// <param name="n1">Noeud 1</param>
         /// <param name="n2">Noeud 2</param>
         /// <returns>poids entre les 2 noeuds</returns>
-        public int getWeight(Node n1, Node n2)
+        public int GetWeight(Node n1, Node n2)
         {
             int value = -1;
-            foreach (Edge edge in edges)
+            foreach (Edge edge in Edges)
             {
                 if (edge.A == n1 && edge.B == n2)
                 {
@@ -57,11 +57,11 @@ namespace Framework.ShortestPath
         /// </summary>
         /// <param name="n1">Noeud 1</param>
         /// <param name="n2">Noeud 2</param>
-        public void relax(Node n1, Node n2)
+        public void Relax(Node n1, Node n2)
         {
-            if (n2.Value > (n1.Value + getWeight(n1, n2)))
+            if (n2.Value > (n1.Value + GetWeight(n1, n2)))
             {
-                n2.Value = n1.Value + getWeight(n1, n2);
+                n2.Value = n1.Value + GetWeight(n1, n2);
                 n2.parent = n1;
             }
         }

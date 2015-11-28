@@ -8,7 +8,7 @@ namespace Framework.ShortestPath
 {
     /// <summary>
     /// Recherche du plus court chemin dans un tableau à 2 dimensions
-    /// Socke le résultat dans le PathTwoDimensionArray
+    /// Stocke le résultat dans le PathTwoDimensionArray
     /// </summary>
     public class FloydWarshall
     {
