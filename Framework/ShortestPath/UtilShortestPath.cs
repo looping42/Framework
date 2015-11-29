@@ -14,6 +14,8 @@ namespace Framework.ShortestPath
 
         public List<Node> NodeTampon { get; set; }
 
+        public int MaxValue { get; set; }
+
         /// <summary>
         /// Position Noeud de départ
         /// </summary>
@@ -64,6 +66,65 @@ namespace Framework.ShortestPath
                 n2.Value = n1.Value + GetWeight(n1, n2);
                 n2.parent = n1;
             }
+        }
+
+        /// <summary>
+        /// Initialise un graphe avec une valeur lambda
+        /// Les valeurs des liens pour les noeuds (0 à 0 ou 1 à 1 etc ...) sont mise à zero
+        /// </summary>
+        /// <returns></returns>
+        public int[,] InitializeGraphMaxValue()
+        {
+            int[,] tampon = new int[Nodes.Count(), Nodes.Count()];
+
+            for (int i = 0; i < tampon.GetLongLength(0); i++)
+            {
+                for (int j = 0; j < tampon.GetLongLength(1); j++)
+                {
+                    if (i == j)
+                    {
+                        tampon[i, j] = 0;
+                    }
+                    else
+                    {
+                        tampon[i, j] = MaxValue;
+                    }
+                }
+            }
+            return tampon;
+        }
+
+        /// <summary>
+        /// Transforme un graphe en matrice
+        /// Pour le poids des Edges allant seulement dans un sens
+        /// </summary>
+        /// <returns>matrice</returns>
+        public int[,] GraphInMatrix()
+        {
+            int[,] tampon = InitializeGraphMaxValue();
+
+            foreach (Edge edge in Edges)
+            {
+                tampon[edge.A.Value, edge.B.Value] = edge.Weight;
+            }
+            return tampon;
+        }
+
+        /// <summary>
+        /// Transforme un graphe en matrice
+        /// Pour le poids des Edges allant en double sens
+        /// </summary>
+        /// <returns>matrice</returns>
+        public int[,] GraphInMatrixDoubleSens()
+        {
+            int[,] tampon = InitializeGraphMaxValue();
+
+            foreach (Edge edge in Edges)
+            {
+                tampon[edge.A.Value, edge.B.Value] = edge.Weight;
+                tampon[edge.B.Value, edge.A.Value] = edge.Weight;
+            }
+            return tampon;
         }
     }
 }

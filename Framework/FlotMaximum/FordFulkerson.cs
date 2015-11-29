@@ -6,14 +6,8 @@ using System.Threading.Tasks;
 
 namespace Framework.FlotMaximum
 {
-    public class FordFulkerson
+    public class FordFulkerson : ShortestPath.FloydWarshall
     {
-        public int[,] TwoDimensionArray { get; set; }
-
-        public int[,] PathTwoDimensionArray { get; set; }
-
-        public int NumberOfNodes { get; set; }
-
         public bool[] Visited { get; set; }
 
         /// <summary>
