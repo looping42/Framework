@@ -53,16 +53,16 @@ namespace Framework.Tree
         /// Parcours dans l'ordre croissant
         /// La racine se trouve entre le sous arbres gauche et le sous arbres droit
         /// </summary>
-        public void ParcoursInfixe()
+        public void inorderTraversal()
         {
             if (Left != null)
             {
-                Left.ParcoursInfixe();
+                Left.inorderTraversal();
             }
             Console.Error.WriteLine(Value);
             if (Right != null)
             {
-                Right.ParcoursInfixe();
+                Right.inorderTraversal();
             }
         }
 
@@ -70,25 +70,25 @@ namespace Framework.Tree
         /// Parcours
         /// La racine sera affiché avant le coté gauche puis le coté droit
         /// </summary>
-        public void ParcoursPrefixe()
+        public void PrefixTraversal()
         {
             Console.Error.WriteLine(Value);
             if (Left != null)
-                Left.ParcoursPrefixe();
+                Left.PrefixTraversal();
             if (Right != null)
-                Right.ParcoursPrefixe();
+                Right.PrefixTraversal();
         }
 
         /// <summary>
         /// Parcours
         ///  la racine sera affiché aprés les valeurs des sous arbres coté gauche puis coté droit
         /// </summary>
-        public void ParcoursPostfixe()
+        public void PostfixeTraversal()
         {
             if (Left != null)
-                Left.ParcoursPostfixe();
+                Left.PostfixeTraversal();
             if (Right != null)
-                Right.ParcoursPostfixe();
+                Right.PostfixeTraversal();
             Console.Error.WriteLine(Value);
         }
 
@@ -97,14 +97,14 @@ namespace Framework.Tree
         /// </summary>
         /// <param name="value">valeur</param>
         /// <returns>booléen</returns>
-        public bool Recherche(int value)
+        public bool Research(int value)
         {
             if (value == Value)
                 return true;
             if ((value < Value) && (Left != null))
-                return (Left.Recherche(value));
+                return (Left.Research(value));
             if ((value > Value) && (Right != null))
-                return (Right.Recherche(value));
+                return (Right.Research(value));
             return false;
         }
 
@@ -168,50 +168,50 @@ namespace Framework.Tree
             return this;
         }
 
-        public static void Transplante(Tree Depart, Tree u, Tree v)
-        {
-            if (u.Parent == null)
-            {
-                Depart = v;
-            }
-            else if (u == u.Parent.Left)
-            {
-                u.Parent.Left = v;
-            }
-            else
-            {
-                u.Parent.Right = v;
-            }
-            if (v != null)
-            {
-                v.Parent = u.Parent;
-            }
-        }
+        //public static void Transplante(Tree Depart, Tree u, Tree v)
+        //{
+        //    if (u.Parent == null)
+        //    {
+        //        Depart = v;
+        //    }
+        //    else if (u == u.Parent.Left)
+        //    {
+        //        u.Parent.Left = v;
+        //    }
+        //    else
+        //    {
+        //        u.Parent.Right = v;
+        //    }
+        //    if (v != null)
+        //    {
+        //        v.Parent = u.Parent;
+        //    }
+        //}
 
-        public static void SupprimerNode(Tree depart, Tree z)
-        {
-            if (z.Left == null)
-            {
-                Tree.Transplante(depart, z, z.Right);
-            }
-            else if (z.Right == null)
-            {
-                Tree.Transplante(depart, z, z.Left);
-            }
-            else
-            {
-                Tree y = Tree.TreeMinimumValue(z.Right);
-                if (y.Parent != z)
-                {
-                    Tree.Transplante(depart, y, y.Right);
-                    y.Right = z.Right;
-                    y.Right.Parent = y;
-                }
-                Tree.Transplante(depart, z, y);
-                y.Left = z.Left;
-                y.Left.Parent = y;
-            }
-        }
+        //public static void SupprimerNode(Tree depart, Tree z)
+        //{
+        //    if (z.Left == null)
+        //    {
+        //        Tree.Transplante(depart, z, z.Right);
+        //    }
+        //    else if (z.Right == null)
+        //    {
+        //        Tree.Transplante(depart, z, z.Left);
+        //    }
+        //    else
+        //    {
+        //        Tree y = Tree.TreeMinimumValue(z.Right);
+        //        if (y.Parent != z)
+        //        {
+        //            Tree.Transplante(depart, y, y.Right);
+        //            y.Right = z.Right;
+        //            y.Right.Parent = y;
+        //        }
+        //        Tree.Transplante(depart, z, y);
+        //        y.Left = z.Left;
+        //        y.Left.Parent = y;
+        //    }
+        //}
 
         /// <summary>
         /// Insertion d'une branche dans un arbre choisi
@@ -307,7 +307,7 @@ namespace Framework.Tree
         /// <param name="a">Tree a</param>
         /// <param name="b">Tree b</param>
         /// <returns>booléen</returns>
-        public static bool ArbresEgaux(Tree a, Tree b)
+        public static bool IsTreeIsTheSame(Tree a, Tree b)
         {
             if ((a == null) && (b == null))
                 return true;
@@ -319,8 +319,8 @@ namespace Framework.Tree
             // A ce point, a et b != null, on peut acceder a leurs champs
             if (a.Value != b.Value)
                 return false;
-            return (ArbresEgaux(a.Left, b.Left)
-                && ArbresEgaux(a.Right, b.Right));
+            return (IsTreeIsTheSame(a.Left, b.Left)
+                && IsTreeIsTheSame(a.Right, b.Right));
         }
 
         /// <summary>
@@ -328,12 +328,12 @@ namespace Framework.Tree
         /// </summary>
         /// <param name="a">Arbre a</param>
         /// <returns></returns>
-        public static int Hauteur(Tree a)
+        public static int HeightTree(Tree a)
         {
             if (a == null)
                 return 0;
             else
-                return (1 + Math.Max(Hauteur(a.Left), Hauteur(a.Right)));
+                return (1 + Math.Max(HeightTree(a.Left), HeightTree(a.Right)));
         }
 
         /// <summary>
@@ -341,7 +341,7 @@ namespace Framework.Tree
         /// </summary>
         /// <param name="a">Tree a</param>
         /// <returns>booléen</returns>
-        public static bool EstUnArbreBinaire(Tree a)
+        public static bool IsBinaryTree(Tree a)
         {
             if (a == null)
                 return true;
@@ -349,7 +349,7 @@ namespace Framework.Tree
                 return false;
             if ((a.Right != null) && (a.Value > a.Right.Value))
                 return false;
-            return (EstUnArbreBinaire(a.Left) && EstUnArbreBinaire(a.Right));
+            return (IsBinaryTree(a.Left) && IsBinaryTree(a.Right));
         }
 
         /// <summary>
@@ -357,7 +357,7 @@ namespace Framework.Tree
         /// </summary>
         /// <param name="a">Tree</param>
         /// <returns>Le noeud qui succéde le noeud entrant</returns>
-        public static Tree TreeSuccesor(Tree a)
+        public static Tree TreeSuccessor(Tree a)
         {
             if (a.Right != null)
             {
@@ -385,25 +385,6 @@ namespace Framework.Tree
             }
             return a;
         }
-
-        //public void ParcoursLargeur()
-        //{
-        //    File file = new File();
-        //    file.ajouter(this);
-
-        //    Arbre a, b;
-        //    while (!file.estVide())
-        //    {
-        //        a = (Arbre)file.retirer();
-        //        System.out.println(a.getValeur());
-        //        b = a.getSousArbreGauche();
-        //        if (b != null)
-        //            file.ajouter(b);
-        //        b = a.getSousArbreDroit();
-        //        if (b != null)
-        //            file.ajouter(b);
-        //    }
-        //}
 
         /// <summary>
         /// Calcul de l'affichage du Tree
