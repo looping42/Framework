@@ -10,16 +10,8 @@ namespace Framework.Tree
     /// <summary>
     /// Arbre binaire de recherche
     /// </summary>
-    public class Tree
+    public class Tree : UtilTree
     {
-        public int Value { get; set; }
-
-        public Tree Left { get; set; }
-
-        public Tree Right { get; set; }
-
-        public Tree Parent { get; set; }
-
         /// <summary>
         /// Constructeur avec les valeurs des branches
         /// </summary>
@@ -288,20 +280,6 @@ namespace Framework.Tree
         }
 
         /// <summary>
-        /// Recherche de la valeur maximum dans l'arbre binaire
-        /// </summary>
-        /// <param name="a">Tree</param>
-        /// <returns>Tree</returns>
-        public static Tree TreeMaximumValue(Tree a)
-        {
-            while (a.Right != null)
-            {
-                a = a.Right;
-            }
-            return a;
-        }
-
-        /// <summary>
         /// Vérifie si le Tree a est le même que le Tree b
         /// </summary>
         /// <param name="a">Tree a</param>
@@ -353,12 +331,16 @@ namespace Framework.Tree
         }
 
         /// <summary>
-        ///Recherche du noeud successeur
+        ///Recherche du noeud qui succéde au noeud présent
         /// </summary>
         /// <param name="a">Tree</param>
         /// <returns>Le noeud qui succéde le noeud entrant</returns>
-        public static Tree TreeSuccessor(Tree a)
+        public static Tree TreeSearchSuccessor(Tree a)
         {
+            if (a == null)
+            {
+                return null;
+            }
             if (a.Right != null)
             {
                 return Tree.TreeMinimumValue(a.Right);
@@ -373,6 +355,32 @@ namespace Framework.Tree
         }
 
         /// <summary>
+        /// Recherche du noeud précedent
+        /// </summary>
+        /// <param name="a">Tree</param>
+        /// <returns>Le neodu précédent</returns>
+        public static Tree TreeSearchPredecessor(Tree a)
+        {
+            if (a == null)
+            {
+                return null;
+            }
+            if (a.Left != null)
+            {
+                return Tree.TreeMaximumValue(a.Left);
+            }
+
+            Tree y = a.Parent;
+            while (y != null && a == y.Left)
+            {
+                a = y;
+                y = y.Parent;
+            }
+
+            return y;
+        }
+
+        /// <summary>
         /// Recherche de la valeur minimum dans l'arbre binaire
         /// </summary>
         /// <param name="a">Tree</param>
@@ -382,6 +390,20 @@ namespace Framework.Tree
             while (a.Left != null)
             {
                 a = a.Left;
+            }
+            return a;
+        }
+
+        /// <summary>
+        /// Recherche de la valeur maximum dans l'arbre binaire
+        /// </summary>
+        /// <param name="a">Tree</param>
+        /// <returns>Tree</returns>
+        public static Tree TreeMaximumValue(Tree a)
+        {
+            while (a.Right != null)
+            {
+                a = a.Right;
             }
             return a;
         }
