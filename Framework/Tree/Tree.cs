@@ -13,6 +13,17 @@ namespace Framework.Tree
     public class Tree : UtilTree
     {
         /// <summary>
+        /// Création Feuille
+        /// </summary>
+        /// <param name="val"></param>
+        public Tree(int val)
+        {
+            this.Value = val;
+            this.Left = null;
+            this.Right = null;
+        }
+
+        /// <summary>
         /// Constructeur avec les valeurs des branches
         /// </summary>
         /// <param name="val">valeur</param>
@@ -25,13 +36,32 @@ namespace Framework.Tree
             this.Right = d;
         }
 
-        /// <summary>
-        ///Constructeur avec simple valeur
-        /// </summary>
-        /// <param name="val"></param>
-        public Tree(int val)
+        public bool HasLeft()
         {
-            this.Value = val;
+            return Left != null;
+        }
+
+        public bool HasRight()
+        {
+            return Right != null;
+        }
+
+        /// <summary>
+        /// si c'est un noeud avec 2 feuilles
+        /// </summary>
+        /// <returns></returns>
+        public bool IsInternal()
+        {
+            return Left != null || Right != null;
+        }
+
+        /// <summary>
+        /// Si c'est une feuille
+        /// </summary>
+        /// <returns></returns>
+        public bool IsLeaf()
+        {
+            return Left == null && Right == null;
         }
 
         /// <summary>
@@ -312,6 +342,39 @@ namespace Framework.Tree
                 return 0;
             else
                 return (1 + Math.Max(HeightTree(a.Left), HeightTree(a.Right)));
+        }
+
+        /// <summary>
+        /// Nombres de noeuds dans l'arbre
+        /// </summary>
+        /// <returns></returns>
+        public int NumberOfNodes()
+        {
+            return 1 + (HasLeft() ? Left.NumberOfNodes() : 0) + (HasRight() ? Right.NumberOfNodes() : 0);
+        }
+
+        public List<Tree> fringe()
+        {
+            List<Tree> f = new List<Tree>();
+            addToFringe(f);
+            return f;
+        }
+
+        /**
+         * Helper method for fringe, adding fringe data to the ArrayList.
+         */
+
+        private void addToFringe(List<Tree> fringe)
+        {
+            if (IsLeaf())
+                fringe.Add(new Tree());
+            else
+            {
+                if (HasLeft())
+                    Left.addToFringe(fringe);
+                if (HasRight())
+                    Right.addToFringe(fringe);
+            }
         }
 
         /// <summary>

@@ -13,11 +13,6 @@ namespace Framework.ShortestPath
     /// </summary>
     public class Dijkstra : UtilShortestPath
     {
-        /// <summary>
-        /// Extrait le noeud dont la valeur est la plus petite
-        /// et le remove de la liste des noeuds tampon
-        /// </summary>
-        /// <returns></returns>
         public Node ExtractMin()
         {
             double min = double.PositiveInfinity;

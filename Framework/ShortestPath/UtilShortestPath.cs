@@ -28,7 +28,7 @@ namespace Framework.ShortestPath
         {
             foreach (Node n in Nodes)
             {
-                n.Value = int.MaxValue;
+                n.Value = MaxValue;
                 n.parent = null;
             }
             Nodes[PosNodeStart].Value = 0;
