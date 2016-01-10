@@ -93,8 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Const.cs" />
+    <Compile Include="DynamicProgrammation\DynamicProg.cs" />
     <Compile Include="DateExtension.cs" />
     <Compile Include="Directory.cs" />
+    <Compile Include="DynamicProgrammation\MutliplyMatrix.cs" />
     <Compile Include="FlotMaximum\FordFulkerson.cs" />
     <Compile Include="Img\Image.cs" />
     <Compile Include="Log\ConsoleListener.cs" />
