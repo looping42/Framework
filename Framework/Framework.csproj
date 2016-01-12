@@ -96,6 +96,8 @@
     <Compile Include="DynamicProgrammation\DynamicProg.cs" />
     <Compile Include="DateExtension.cs" />
     <Compile Include="Directory.cs" />
+    <Compile Include="DynamicProgrammation\Huffman\NodeHuffman.cs" />
+    <Compile Include="DynamicProgrammation\Huffman\TreeHuffman.cs" />
     <Compile Include="DynamicProgrammation\MutliplyMatrix.cs" />
     <Compile Include="FlotMaximum\FordFulkerson.cs" />
     <Compile Include="Img\Image.cs" />

@@ -332,7 +332,7 @@ namespace Framework.Tree
         }
 
         /// <summary>
-        /// hauteur de larbre
+        /// Hauteur de larbre
         /// </summary>
         /// <param name="a">Arbre a</param>
         /// <returns></returns>
