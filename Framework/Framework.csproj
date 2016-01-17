@@ -92,6 +92,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BTree\BTreeV1\BTree.cs" />
+    <Compile Include="BTree\BTreeV1\BtreeNode.cs" />
+    <Compile Include="BTree\BTreeV2\BtreeNodeV2.cs" />
+    <Compile Include="BTree\BTreeV2\BTreeV2.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="DynamicProgrammation\DynamicProg.cs" />
     <Compile Include="DateExtension.cs" />
@@ -99,6 +103,8 @@
     <Compile Include="DynamicProgrammation\Huffman\NodeHuffman.cs" />
     <Compile Include="DynamicProgrammation\Huffman\TreeHuffman.cs" />
     <Compile Include="DynamicProgrammation\MutliplyMatrix.cs" />
+    <Compile Include="Fibonnaci\FibHeapNode.cs" />
+    <Compile Include="Fibonnaci\FibonnaciHeap.cs" />
     <Compile Include="FlotMaximum\FordFulkerson.cs" />
     <Compile Include="Img\Image.cs" />
     <Compile Include="Log\ConsoleListener.cs" />
@@ -132,6 +138,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
