@@ -127,6 +127,8 @@
     <Compile Include="Tree\Tree.cs" />
     <Compile Include="Tree\TreeRedBlack.cs" />
     <Compile Include="Tree\UtilTree.cs" />
+    <Compile Include="Veb\VebNode.cs" />
+    <Compile Include="Veb\VebTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

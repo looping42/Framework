@@ -9,7 +9,7 @@
         public FibHeapNode<T> Right { get; set; }
         public FibHeapNode<T> Left { get; set; }
         public FibHeapNode<T> Child { get; set; }
-        public T Data { get; }
+        public T Data { get; set; }
 
         public FibHeapNode(T data, double key)
         {

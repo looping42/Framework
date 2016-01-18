@@ -439,6 +439,10 @@ namespace Framework.Fibonnaci
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Affiche les enfants
+        /// </summary>
+        /// <param name="newChild"></param>
         public void displayChild(FibHeapNode<T> newChild)
         {
             if (newChild.Child != null)
