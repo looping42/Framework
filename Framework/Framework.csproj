@@ -106,6 +106,9 @@
     <Compile Include="Fibonnaci\FibHeapNode.cs" />
     <Compile Include="Fibonnaci\FibonnaciHeap.cs" />
     <Compile Include="FlotMaximum\FordFulkerson.cs" />
+    <Compile Include="Graph\Graph.cs" />
+    <Compile Include="Graph\GraphEdge.cs" />
+    <Compile Include="Graph\GraphNode.cs" />
     <Compile Include="Img\Image.cs" />
     <Compile Include="Log\ConsoleListener.cs" />
     <Compile Include="Log\Logger.cs" />

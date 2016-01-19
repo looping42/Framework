@@ -36,11 +36,19 @@ namespace Framework.Tree
             this.Right = d;
         }
 
+        /// <summary>
+        ///valeur enfant gauche
+        /// </summary>
+        /// <returns></returns>
         public bool HasLeft()
         {
             return Left != null;
         }
 
+        /// <summary>
+        /// valeur enfant droite
+        /// </summary>
+        /// <returns></returns>
         public bool HasRight()
         {
             return Right != null;

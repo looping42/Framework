@@ -13,6 +13,7 @@ namespace Framework.Veb
         public VebNode[] cluster { get; set; }
         public int min { get; set; }
         public int max { get; set; }
+
         /// <summary>
         /// Constructeur
         /// </summary>
