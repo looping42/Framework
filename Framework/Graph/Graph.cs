@@ -10,155 +10,154 @@ namespace Framework.Graph
 
     public class Graph
     {
-        public bool IsDirectGraph { get; set; }
+        /// <summary>
+        /// Poids lambda qui va servir à connaître la distance entre le noeud de départ et les autres noeuds
+        /// </summary>
+        private int _datationToGive;
 
-        //private members
-        private HashSet<GraphNode> _vertexes;
+        /// <summary>
+        /// Si les liens du graph sont à sens unique true sinon false
+        /// </summary>
+        public bool IsSensUniqLinkEdge { get; set; }
 
-        private Dictionary<GraphNode, LinkedList<GraphEdge>> _VertexEdgeMapping;
+        /// <summary>
+        /// membres privée noeud du graph
+        /// </summary>
+        private HashSet<GraphNode> _nodes;
 
-        //Constructor
+        /// <summary>
+        /// Dicctionnaire contenant les noeuds et leurs liens
+        /// </summary>
+        private Dictionary<GraphNode, LinkedList<GraphEdge>> nodesKeyEdgeValues;
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="isDirect">Si le graphe a des liens en double sens </param>
         public Graph(bool isDirect)
         {
-            IsDirectGraph = isDirect;
-            _vertexes = new HashSet<GraphNode>();
-            _VertexEdgeMapping = new Dictionary<GraphNode, LinkedList<GraphEdge>>();
+            IsSensUniqLinkEdge = isDirect;
+            _nodes = new HashSet<GraphNode>();
+            nodesKeyEdgeValues = new Dictionary<GraphNode, LinkedList<GraphEdge>>();
         }
 
-        public bool AddVertex(GraphNode vertex)
+        /// <summary>
+        /// Ajout des noeuds
+        /// </summary>
+        /// <param name="node">noeud à ajouter</param>
+        public void AddNode(GraphNode node)
         {
-            try
+            _nodes.Add(node);
+            nodesKeyEdgeValues.Add(node, new LinkedList<GraphEdge>());
+        }
+
+        /// <summary>
+        /// Ajout liens
+        /// </summary>
+        /// <param name="from">noeud de départ</param>
+        /// <param name="to">noeud d'arrivée</param>
+        /// <param name="weight">poids entre les 2 noeuds</param>
+        public void AddEdge(GraphNode from, GraphNode to, int weight)
+        {
+            GraphEdge newEdge = new GraphEdge(from, to, weight);
+            nodesKeyEdgeValues[from].AddLast(newEdge);
+            if (IsSensUniqLinkEdge == false)
             {
-                _vertexes.Add(vertex);
-                _VertexEdgeMapping.Add(vertex, new LinkedList<GraphEdge>());
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Add vertex failed! {0}", e.Message);
-                return false;
+                GraphEdge backEdge = new GraphEdge(to, from, weight);
+                nodesKeyEdgeValues[to].AddLast(backEdge);
             }
         }
 
-        public bool AddEdge(GraphNode from, GraphNode to, int weight)
+        /// <summary>
+        /// Pacrours en profondeur
+        /// </summary>
+        /// <returns>liste des noeuds du parcours en profondeur</returns>
+        public List<GraphNode> DepthSearchFirst()
         {
-            try
+            List<GraphNode> result = new List<GraphNode>();
+
+            foreach (GraphNode node in _nodes)
             {
-                GraphEdge newEdge = new GraphEdge(from, to, weight);
-                _VertexEdgeMapping[from].AddLast(newEdge);
-                if (IsDirectGraph == false)
+                node.Color = Coloration.white;
+                node.ParentNode = null;
+            }
+            _datationToGive = 0;
+            foreach (GraphNode node in _nodes)
+            {
+                if (node.Color == Coloration.white)
                 {
-                    GraphEdge backEdge = new GraphEdge(to, from, weight);
-                    _VertexEdgeMapping[to].AddLast(backEdge);
+                    DFS_Visit(node, result);
                 }
-                return true;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Add edge failed! {0}", e.Message);
-                return false;
-            }
+            return result;
         }
 
-        public bool BreadthFirstSearch(GraphNode rootVertex)
+        /// <summary>
+        /// Parcours des noeuds en profondeurs
+        /// </summary>
+        /// <param name="node">noeud courant</param>
+        /// <param name="result">liste des noeud pour le résultat</param>
+        private void DFS_Visit(GraphNode node, List<GraphNode> result)
         {
-            try
+            _datationToGive = _datationToGive + 1;
+            node.DatationStart = _datationToGive;
+            node.Color = Coloration.gray;
+
+            foreach (GraphEdge edge in nodesKeyEdgeValues[node])//explore l'arc
             {
-                Console.WriteLine("******* Breadth First Search  ********");
-
-                Dictionary<GraphNode, string> color = new Dictionary<GraphNode, string>();
-                Dictionary<GraphNode, GraphNode> parent = new Dictionary<GraphNode, GraphNode>();
-
-                foreach (GraphNode vertex in _vertexes)
+                if (edge.ToVertex.Color == Coloration.white)
                 {
-                    color.Add(vertex, Coloration.white.ToString());
-                    parent.Add(vertex, null);
+                    edge.ToVertex.ParentNode = node;
+                    DFS_Visit(edge.ToVertex, result);
                 }
+            }
+            //noircit le noeud courant car on en a finit avec lui
+            node.Color = Coloration.black;
+            _datationToGive = _datationToGive + 1;
+            node.DatationEnd = _datationToGive;
+            result.Add(node);
+        }
 
-                color[rootVertex] = Coloration.gray.ToString();
+        /// <summary>
+        /// Parcours en largeur
+        /// </summary>
+        /// <param name="rootNode">noeud racine</param>
+        /// <returns>Liste des noeud du parcours en largeur</returns>
+        public List<GraphNode> BreadthFirstSearch(GraphNode rootNode)
+        {
+            List<GraphNode> result = new List<GraphNode>();
 
-                Queue<GraphNode> queue = new Queue<GraphNode>();
-                queue.Enqueue(rootVertex);
+            foreach (GraphNode node in _nodes)
+            {
+                node.Color = Coloration.white;
+                node.DatationStart = int.MaxValue;
+                node.ParentNode = null;
+            }
+            rootNode.Color = Coloration.gray;
+            rootNode.ParentNode = null;
+            rootNode.DatationStart = 0;
 
-                while (queue.Count != 0)
+            Queue<GraphNode> queue = new Queue<GraphNode>();
+            queue.Enqueue(rootNode);
+
+            while (queue.Count != 0)
+            {
+                GraphNode nodeTampon = queue.Dequeue();
+                foreach (GraphEdge edge in nodesKeyEdgeValues[nodeTampon])
                 {
-                    GraphNode temp = queue.Dequeue();
-                    foreach (GraphEdge edge in _VertexEdgeMapping[temp])
+                    if (edge.ToVertex.Color == Coloration.white)
                     {
-                        if (color[edge.ToVertex] == Coloration.white.ToString())
-                        {
-                            color[edge.ToVertex] = Coloration.gray.ToString();
-                            parent[edge.ToVertex] = temp;
-                            queue.Enqueue(edge.ToVertex);
-                        }
-                    }
-                    color[temp] = Coloration.black.ToString();
-                    Console.WriteLine("Vertex {0} has been found!", temp.Value2);
-                }
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Breadth First Search failed! {0}", e.Message);
-                return false;
-            }
-        }
-
-        public bool DepthSearchFirst()
-        {
-            try
-            {
-                Console.WriteLine("******* Depth First Search  ********");
-
-                Dictionary<GraphNode, string> color = new Dictionary<GraphNode, string>();
-                Dictionary<GraphNode, GraphNode> parent = new Dictionary<GraphNode, GraphNode>();
-                foreach (GraphNode vertex in _vertexes)
-                {
-                    color.Add(vertex, Coloration.white.ToString());
-                    parent.Add(vertex, null);
-                }
-
-                foreach (GraphNode vertex in _vertexes)
-                {
-                    if (color[vertex] == Coloration.white.ToString())
-                    {
-                        DFS_Visit(vertex, color, parent);
-                    }
-                }
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Depth search first failed! {0}", e.Message);
-                return false;
-            }
-        }
-
-        private bool DFS_Visit(GraphNode vertex, Dictionary<GraphNode, string> color, Dictionary<GraphNode, GraphNode> parent)
-        {
-            try
-            {
-                color[vertex] = Coloration.gray.ToString();
-                foreach (GraphEdge edge in _VertexEdgeMapping[vertex])
-                {
-                    if (color[edge.ToVertex] == Coloration.white.ToString())
-                    {
-                        parent[edge.ToVertex] = vertex;
-                        DFS_Visit(edge.ToVertex, color, parent);
+                        edge.ToVertex.Color = Coloration.gray;
+                        edge.ToVertex.ParentNode = nodeTampon;
+                        edge.ToVertex.DatationStart = nodeTampon.DatationStart + 1;
+                        queue.Enqueue(edge.ToVertex);
                     }
                 }
+                nodeTampon.Color = Coloration.black;
+                result.Add(nodeTampon);
+            }
 
-                color[vertex] = Coloration.black.ToString();
-                Console.WriteLine("Vertex {0} has been found!", vertex.Value2);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("DFS_Visit failed! {0}", e.Message);
-                return false;
-            }
+            return result;
         }
     }
 }
