@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Framework.ShortestPath
 {
     /// <summary>
+    /// Programmation dynamique
     /// Recherche du plus court chemin dans un tableau à 2 dimensions
     /// Stocke le résultat dans le PathTwoDimensionArray
     /// </summary>

@@ -57,7 +57,7 @@ namespace Framework.ShortestPath
         /// </summary>
         /// <param name="n1">Noeud 1</param>
         /// <param name="n2">Noeud 2</param>
-        /// <returns>poid entre les 2 noeuds</returns>
+        /// <returns>Poids entre les 2 noeuds</returns>
         public int GetWeightDijkstra(Node n1, Node n2)
         {
             int value = 0;

@@ -28,7 +28,7 @@ namespace Framework.Graph
         /// <summary>
         /// Dicctionnaire contenant les noeuds et leurs liens
         /// </summary>
-        private Dictionary<GraphNode, LinkedList<GraphEdge>> nodesKeyEdgeValues;
+        public Dictionary<GraphNode, LinkedList<GraphEdge>> nodesKeyEdgeValues { get; set; }
 
         /// <summary>
         /// Constructeur
@@ -67,6 +67,8 @@ namespace Framework.Graph
                 nodesKeyEdgeValues[to].AddLast(backEdge);
             }
         }
+
+        #region DFS BFS
 
         /// <summary>
         /// Pacrours en profondeur
@@ -158,6 +160,33 @@ namespace Framework.Graph
             }
 
             return result;
+        }
+
+        #endregion DFS BFS
+
+        public void Prim(GraphNode rootNode)
+        {
+            foreach (KeyValuePair<GraphNode, LinkedList<GraphEdge>> edge in nodesKeyEdgeValues)//explore l'arc
+            {
+                edge.Key.Value = int.MaxValue;
+                edge.Key.ParentNode = null;
+            }
+            rootNode.Value = 0;
+            Queue<GraphNode> nodestampon = new Queue<GraphNode>(nodesKeyEdgeValues.Keys.ToList());
+
+            while (nodestampon.Count != 0)
+            {
+                GraphNode u = nodestampon.Dequeue();
+
+                foreach (GraphEdge edge in nodesKeyEdgeValues[u])
+                {
+                    if (nodestampon.Contains(edge.ToVertex) && edge.Weight < edge.ToVertex.Value)
+                    {
+                        edge.ToVertex.ParentNode = u;
+                        edge.ToVertex.Value = edge.Weight;
+                    }
+                }
+            }
         }
     }
 }

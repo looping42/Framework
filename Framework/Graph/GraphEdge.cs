@@ -8,9 +8,9 @@ namespace Framework.Graph
 {
     public class GraphEdge
     {
-        public GraphNode FromVertex { get; private set; }
-        public GraphNode ToVertex { get; private set; }
-        public int Weight { get; private set; }
+        public GraphNode FromVertex { get;  set; }
+        public GraphNode ToVertex { get;  set; }
+        public int Weight { get;  set; }
 
         /// <summary>
         /// constructeur
@@ -23,6 +23,10 @@ namespace Framework.Graph
             FromVertex = from;
             ToVertex = to;
             Weight = weight;
+        }
+
+        public GraphEdge()
+        {
         }
     }
 }
