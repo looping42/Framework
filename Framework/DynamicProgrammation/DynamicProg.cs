@@ -12,10 +12,10 @@ namespace Framework.CutRod
         /// Découpe de barre
         /// Calcul de la combinaison (champs) de valeurs maximal pour une taille de barre max donnée d'une longueur n
         /// </summary>
-        /// <param name="prix">tableau comprenant lec valeurs</param>
         /// <param name="n">taille des barres max</param>
+        /// <param name="prix">tableau comprenant lec valeurs</param>
         /// <returns></returns>
-        public static int CutRod(int[] prix, int n)
+        public static int CutRod(int n, int[] prix)
         {
             int[] val = new int[n + 1];
             val[0] = 0;
@@ -73,7 +73,7 @@ namespace Framework.CutRod
 
         /// <summary>
         /// Recherche du maximum de combinaison possible d'activité pour une seule personne
-        /// une activité par période max
+        /// une activité par période max : classé le tableau f en entére dans l'ordre alphabétique
         /// </summary>
         /// <param name="s">tableau comprenant le début des activités</param>
         /// <param name="f">tableau comprenant la fin des activités</param>
