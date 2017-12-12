@@ -1,9 +1,11 @@
-﻿using Framework.Graph;
+﻿using Framework;
+using Framework.Graph;
 using Framework.Graph.Kruskal;
 using Framework.Graph.Prim;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TestProject
 {
@@ -331,7 +333,8 @@ namespace TestProject
         {
             int s = 4;
             int[] mst;
-            string fname = "E:\\projetvisualstudio\\UnitTest\\TestProject\\FileTxt\\wGraph3.txt";
+            //string path = Const.CurrentApplication.;
+            string fname = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()) + "\\FileTxt\\wGraph3.txt";
 
             GraphPrim g = new GraphPrim(fname);
 
@@ -341,7 +344,7 @@ namespace TestProject
 
             g.showMST(mst);
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         [TestMethod]
@@ -349,7 +352,7 @@ namespace TestProject
         {
             int s = 4;
             int[] mst;
-            string fname = "E:\\projetvisualstudio\\UnitTest\\TestProject\\FileTxt\\wGraph3V2.txt";
+            string fname = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()) + "\\FileTxt\\wGraph3V2.txt";
 
             GraphPrim g = new GraphPrim(fname);
 
@@ -359,7 +362,7 @@ namespace TestProject
 
             g.showMST(mst);
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         [TestMethod]
@@ -367,7 +370,7 @@ namespace TestProject
         {
             int s = 4;
             int[] mst;
-            string fname = "E:\\projetvisualstudio\\UnitTest\\TestProject\\FileTxt\\wGraph3V3.txt";
+            string fname = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()) + "FileTxt\\wGraph3V3.txt";
 
             GraphPrim g = new GraphPrim(fname);
 
@@ -377,7 +380,7 @@ namespace TestProject
 
             g.showMST(mst);
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         [TestMethod]
@@ -411,7 +414,7 @@ namespace TestProject
         [TestMethod]
         public void testGraphPrimv6()
         {
-            string inputFile = "E:\\projetvisualstudio\\UnitTest\\TestProject\\FileTxt\\wGraph3V4.txt";
+            string inputFile = Directory.GetParent(Directory.GetParent(Environment.CurrentDirectory).ToString()) + "\\FileTxt\\wGraph3V4.txt";
             Framework.Graph.Prim.MinimumSpanningTree.MinSpanTree msTree = new Framework.Graph.Prim.MinimumSpanningTree.MinSpanTree(new Kruskal(inputFile));
             msTree.findMinSpanTree();
             msTree.printMinSpanTree();
@@ -422,7 +425,7 @@ namespace TestProject
             msTree.findMinSpanTree();
             msTree.printMinSpanTree();
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
