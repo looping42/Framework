@@ -14,7 +14,7 @@ namespace Framework.ConsoleListener
     Fonction      :  log les erreurs Console
     ******************************************************************/
 
-    internal class ConsoleListener
+    public static class ConsoleListener
     {
         /// <summary>
         /// Ecrit dans la console le message

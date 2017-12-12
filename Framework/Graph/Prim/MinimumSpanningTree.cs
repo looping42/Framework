@@ -18,7 +18,6 @@ namespace Framework.Graph.Prim
         public class MinSpanTree
         {
             private IMinTree minTreeAlgorithm;
-            //private List<IMinTree> algorithm;
 
             public MinSpanTree(IMinTree algorithm)
             {
@@ -44,7 +43,6 @@ namespace Framework.Graph.Prim
 
             public int solution(int[] A, int N)
             {
-                int[] listNbr = new int[A.Count()];
                 int valParcours = 0;
                 int somme = 0;
                 foreach (var nbrUnique in A)

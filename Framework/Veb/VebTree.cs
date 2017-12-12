@@ -11,12 +11,12 @@ namespace Framework.Veb
         /// <summary>
         /// Base du noeud (taille)
         /// </summary>
-        private static int BASE_SIZE = 2;
+        public static int BASE_SIZE = 2;
 
         /// <summary>
         /// Valeur max et minimum
         /// </summary>
-        private static int NULL = -1;
+        public static int NULL = -1;
 
         private VebNode Root;
 

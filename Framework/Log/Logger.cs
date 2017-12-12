@@ -45,9 +45,7 @@ namespace Framework.Log
         {
             try
             {
-                DirectoryMethod.DirectoryMethod temp = new DirectoryMethod.DirectoryMethod();
-
-                temp.CreateDirectory(Properties.Settings.Default.FMLogs);
+                Directory.CreateDirectory(Properties.Settings.Default.FMLogs);
                 using (TextWriterTraceListener writer = new TextWriterTraceListener(Path.Combine(Const.CurrentApplication, Properties.Settings.Default.FMLogs, DateExtension.DateExtension.DayToday() + "- Logs.txt")))
                 {
                     Trace.AutoFlush = true;
