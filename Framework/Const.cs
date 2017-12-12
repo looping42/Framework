@@ -8,7 +8,8 @@ namespace Framework
 {
     public class Const
     {
-        public string test4;
+        public string test5;
+
         /// <summary>
         /// Application en cours
         /// </summary>
