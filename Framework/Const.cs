@@ -8,6 +8,8 @@ namespace Framework
 {
     public static class Const
     {
+        public static int test4;
+
         /// <summary>
         /// Application en cours
         /// </summary>
