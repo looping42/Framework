@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Framework.CutRod
 {
-    public class DynamicProg
+    public static class DynamicProg
     {
         /// <summary>
         /// Découpe de barre

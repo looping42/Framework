@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Framework.LongestCommonString
 {
-    public class Plsc
+    public static class Plsc
     {
         /// <summary>
         /// retourne la sequence commune la plus longue

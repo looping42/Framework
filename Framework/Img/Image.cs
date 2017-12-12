@@ -12,7 +12,7 @@ using System.Web.Helpers;
 
 namespace Framework.Img
 {
-    public class Img
+    public static class Img
     {
         /// <summary>
         /// Redimensionne une image web ( en mémoire )
@@ -29,7 +29,7 @@ namespace Framework.Img
             }
             else
             {
-                throw new Exception("Le Chemin vers le fichier n'existe pas ");
+                throw new FileNotFoundException("Le Chemin vers le fichier n'existe pas ");
             }
         }
     }

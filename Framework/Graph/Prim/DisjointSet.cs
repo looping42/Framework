@@ -8,9 +8,9 @@ namespace Framework.Graph.Prim
 {
     public class DisjointSet
     {
-        int[] parents;
-        int[] rank;
-        const int MaxArray = 128;
+        private int[] parents;
+        private int[] rank;
+        private const int MaxArray = 128;
 
         public DisjointSet()
         {
@@ -96,10 +96,10 @@ namespace Framework.Graph.Prim
         }
     }
 
-    class DJSet
+    internal class DJSet
     {
-        int root;
-        HashSet<int> set;
+        private int root;
+        private HashSet<int> set;
 
         public DJSet(int root)
         {
@@ -111,7 +111,6 @@ namespace Framework.Graph.Prim
         {
             set.Add(i);
         }
-
 
         public int Root
         {
@@ -140,11 +139,14 @@ namespace Framework.Graph.Prim
         }
     }
 
-    class DJSets
+    internal class DJSets
     {
-        List<DJSet> djSets;
+        private List<DJSet> djSets;
 
-        public DJSets() { djSets = new List<DJSet>(); }
+        public DJSets()
+        {
+            djSets = new List<DJSet>();
+        }
 
         public void printSets()
         {
@@ -192,6 +194,5 @@ namespace Framework.Graph.Prim
                 }
             }
         }
-
     }
 }

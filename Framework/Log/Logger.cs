@@ -19,7 +19,7 @@ namespace Framework.Log
     Fonction      :  log les erreurs
     ******************************************************************/
 
-    public class Logger
+    public static class Logger
     {
         public static void Error(string message)
         {

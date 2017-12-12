@@ -179,6 +179,7 @@ namespace Framework.Graph.Prim
 
                 adj[u] = t;
             }
+            reader.Dispose();
         }
 
         private char toChar(int u)

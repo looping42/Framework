@@ -119,7 +119,7 @@ namespace Framework.Graph.Kruskal
             {
                 // Step 2: Pick the smallest edge. And increment the index
                 // for next iteration
-                KruskalEdge next_edge = new KruskalEdge();
+                KruskalEdge next_edge;
                 next_edge = Edges[j++];
 
                 int x = Find(subsets, next_edge.From);
