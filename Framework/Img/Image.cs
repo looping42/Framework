@@ -21,7 +21,7 @@ namespace Framework.Img
         /// <param name="heigth">nouvelle taille</param>
         /// <param name="width">nouvelle largeur</param>
         /// <returns>image avce les nouvelle dimension</returns>
-        private static WebImage resizeImageFromFile(String OriginalFileLocation, int heigth, int width)
+        public static WebImage resizeImageFromFile(String OriginalFileLocation, int heigth, int width)
         {
             if (File.Exists(Path.Combine(Const.CurrentApplication, OriginalFileLocation)))
             {

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Framework
 {
-    public class Const
+    public static class Const
     {
-        public string test5;
-
         /// <summary>
         /// Application en cours
         /// </summary>

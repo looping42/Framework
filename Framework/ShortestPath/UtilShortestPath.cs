@@ -75,7 +75,7 @@ namespace Framework.ShortestPath
         /// <returns></returns>
         public int[,] InitializeGraphMaxValue()
         {
-            int[,] tampon = new int[Nodes.Count(), Nodes.Count()];
+            int[,] tampon = new int[Nodes.Count, Nodes.Count];
 
             for (int i = 0; i < tampon.GetLongLength(0); i++)
             {

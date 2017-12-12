@@ -13,7 +13,7 @@ namespace Framework.DateExtension
     Fonction      :  appel des divers méthode comprenant des dates
     ******************************************************************/
 
-    internal class DateExtension
+    public static class DateExtension
     {
         public static string DayHourToday()
         {

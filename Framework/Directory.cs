@@ -14,9 +14,9 @@ namespace Framework.DirectoryMethod
     Fonction      :  Création de répértoire
     ******************************************************************/
 
-    public class DirectoryMethod
+    public static class DirectoryMethod
     {
-        public void CreateDirectory(string repertory)
+        public static void CreateDirectory(string repertory)
         {
             //Si le répértoire n'existe pas
             if (!Directory.Exists(Path.Combine(Const.CurrentApplication + repertory)))
