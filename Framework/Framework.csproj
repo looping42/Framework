@@ -154,6 +154,7 @@
     <Compile Include="Graph\Prim\MinimumSpanningTree.cs" />
     <Compile Include="Graph\Prim\Prim.cs" />
     <Compile Include="Img\Image.cs" />
+    <Compile Include="IntersectSegment\IntersectSegment.cs" />
     <Compile Include="Log\ConsoleListener.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="LongestCommonString\Plsc.cs" />
