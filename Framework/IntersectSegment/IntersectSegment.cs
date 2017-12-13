@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Framework.IntersectSegment
 {
-    public class IntersectSegment
+    public static class IntersectSegment
     {
-        public bool DoIntersect(Point p1, Point q1, Point p2, Point q2)
+        public static bool DoIntersect(Point p1, Point q1, Point p2, Point q2)
         {
             // Find the four orientations needed for general and
             // special cases
@@ -32,7 +32,7 @@ namespace Framework.IntersectSegment
             return false; // Doesn’t fall in any of the above cases
         }
 
-        private int Orientation(Point p, Point q, Point r)
+        private static int Orientation(Point p, Point q, Point r)
         {
             // See 10th slides from following link for derivation of the formula
             // http://www.dcs.gla.ac.uk/~pat/52233/slides/Geometry1x1.pdf
@@ -42,7 +42,7 @@ namespace Framework.IntersectSegment
             return (val > 0) ? 1 : 2; // clock or counterclock wise
         }
 
-        private bool OnSegment(Point p, Point q, Point r)
+        private static bool OnSegment(Point p, Point q, Point r)
         {
             if (q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X) &&
                      q.Y <= Math.Max(p.Y, r.Y) && q.Y >= Math.Min(p.Y, r.Y))
