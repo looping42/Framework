@@ -36,5 +36,19 @@ namespace UnitTestProject1
             //Console.WriteLine(result);
             Assert.AreEqual("True", result.ToString());
         }
+
+        [TestMethod]
+        public void TestIntersectSegment3()
+        {
+            Point p1 = new Point(-5, -5);
+            Point q1 = new Point(0, 0);
+
+            Point p2 = new Point(1, 1);
+            Point q2 = new Point(10, 10);
+
+            bool result = IntersectSegment.DoIntersect(p1, q1, p2, q2);
+            //Console.WriteLine(result);
+            Assert.AreEqual("False", result.ToString());
+        }
     }
 }
