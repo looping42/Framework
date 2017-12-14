@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Framework.IntersectSegment
+namespace Framework.Geometry.IntersectSegment
 {
     /// <summary>
     /// Vérifie si les lignes p1 et q1 et la ligne p2 et q2 se croise

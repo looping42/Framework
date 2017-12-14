@@ -138,6 +138,8 @@
     <Compile Include="Fibonnaci\FibHeapNode.cs" />
     <Compile Include="Fibonnaci\FibonnaciHeap.cs" />
     <Compile Include="FlotMaximum\FordFulkerson.cs" />
+    <Compile Include="Geometry\Carre\Carre.cs" />
+    <Compile Include="Geometry\Triangle\Triangle.cs" />
     <Compile Include="Graph\Graph.cs" />
     <Compile Include="Graph\GraphEdge.cs" />
     <Compile Include="Graph\GraphNode.cs" />
@@ -155,7 +157,7 @@
     <Compile Include="Graph\Prim\Prim.cs" />
     <Compile Include="Graph\Prim\PrimV2.cs" />
     <Compile Include="Img\Image.cs" />
-    <Compile Include="IntersectSegment\IntersectSegment.cs" />
+    <Compile Include="Geometry\IntersectSegment\IntersectSegment.cs" />
     <Compile Include="Log\ConsoleListener.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="LongestCommonString\Plsc.cs" />

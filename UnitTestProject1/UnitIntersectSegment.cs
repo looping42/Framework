@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
-using Framework.IntersectSegment;
+using Framework.Geometry.IntersectSegment;
 using System.Collections.Generic;
 
 namespace UnitTestProject1

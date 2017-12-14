@@ -85,6 +85,8 @@
     <Compile Include="UnitTest2.cs" />
     <Compile Include="UnitIntersectSegment.cs" />
     <Compile Include="UnitPrim.cs" />
+    <Compile Include="UnitTestCarre.cs" />
+    <Compile Include="UnitTestTriangle.cs" />
     <Compile Include="UnitTestBinaryTree.cs" />
     <Compile Include="UnitTestBTree.cs" />
     <Compile Include="UnitTestBTreeV2.cs" />
