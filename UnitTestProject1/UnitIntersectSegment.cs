@@ -50,5 +50,54 @@ namespace UnitTestProject1
             //Console.WriteLine(result);
             Assert.AreEqual("False", result.ToString());
         }
+
+        [TestMethod]
+        public void TestIntersectSegmentPolygon1()
+        {
+            Point[] polygon1 = new Point[] { new Point { X = 0, Y = 0 }, new Point { X = 10, Y = 0 }, new Point { X = 10, Y = 10 }, new Point { X = 0, Y = 10 } };
+
+            //int n = polygon1.Length / polygon1[0]
+            Point p = new Point(20, 20);
+            bool result = IntersectSegment.IsInside(polygon1, 4, p);
+            Console.WriteLine(result);
+            Assert.AreEqual("False", result.ToString());
+        }
+
+        [TestMethod]
+        public void TestIntersectSegmentPolygon2()
+        {
+            Point[] polygon1 = new Point[] { new Point { X = 0, Y = 0 }, new Point { X = 5, Y = 5 }, new Point { X = 5, Y = 0 } };
+
+            Point p = new Point(5, 5);
+            bool result = IntersectSegment.IsInside(polygon1, 3, p);
+            Console.WriteLine(result);
+            Assert.AreEqual("True", result.ToString());
+
+            p = new Point(3, 3);
+            result = IntersectSegment.IsInside(polygon1, 3, p);
+            Console.WriteLine(result);
+            Assert.AreEqual("True", result.ToString());
+
+            p = new Point(5, 1);
+            result = IntersectSegment.IsInside(polygon1, 3, p);
+            Console.WriteLine(result);
+            Assert.AreEqual("True", result.ToString());
+
+            p = new Point(8, 1);
+            result = IntersectSegment.IsInside(polygon1, 3, p);
+            Console.WriteLine(result);
+            Assert.AreEqual("False", result.ToString());
+        }
+
+        [TestMethod]
+        public void TestIntersectSegmentPolygon3()
+        {
+            Point[] polygon1 = new Point[] { new Point { X = 0, Y = 0 }, new Point { X = 10, Y = 0 }, new Point { X = 10, Y = 10 }, new Point { X = 0, Y = 10 } };
+
+            Point p = new Point(-1, 10);
+            bool result = IntersectSegment.IsInside(polygon1, 3, p);
+            Console.WriteLine(result);
+            Assert.AreEqual("False", result.ToString());
+        }
     }
 }
