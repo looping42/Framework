@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackTrace\BackTrackLabyrint.cs" />
     <Compile Include="BackTrace\PermutString.cs" />
     <Compile Include="BTree\BTreeV1\BTree.cs" />
     <Compile Include="BTree\BTreeV1\BtreeNode.cs" />

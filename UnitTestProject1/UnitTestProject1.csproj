@@ -85,6 +85,7 @@
     <Compile Include="UnitTest2.cs" />
     <Compile Include="UnitIntersectSegment.cs" />
     <Compile Include="UnitPrim.cs" />
+    <Compile Include="UnitBackTrackLabyrint.cs" />
     <Compile Include="UnitTestPermutString.cs" />
     <Compile Include="UnitTestCarre.cs" />
     <Compile Include="UnitTestTriangle.cs" />
