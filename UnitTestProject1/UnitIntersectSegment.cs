@@ -95,7 +95,7 @@ namespace UnitTestProject1
             Point[] polygon1 = new Point[] { new Point { X = 0, Y = 0 }, new Point { X = 10, Y = 0 }, new Point { X = 10, Y = 10 }, new Point { X = 0, Y = 10 } };
 
             Point p = new Point(-1, 10);
-            bool result = IntersectSegment.IsInside(polygon1, 3, p);
+            bool result = IntersectSegment.IsInside(polygon1, 4, p);
             Console.WriteLine(result);
             Assert.AreEqual("False", result.ToString());
         }

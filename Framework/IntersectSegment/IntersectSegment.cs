@@ -69,6 +69,13 @@ namespace Framework.IntersectSegment
             return false;
         }
 
+        /// <summary>
+        /// recherche d'un point situé dans un polygone
+        /// </summary>
+        /// <param name="polygon"></param>
+        /// <param name="n">Nombre de sommet minimum de 3</param>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public static bool IsInside(Point[] polygon, int n, Point p)
         {
             // There must be at least 3 vertices in polygon[]
