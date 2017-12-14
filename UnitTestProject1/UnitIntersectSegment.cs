@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 using Framework.IntersectSegment;
+using System.Collections.Generic;
 
 namespace UnitTestProject1
 {
@@ -98,6 +99,20 @@ namespace UnitTestProject1
             bool result = IntersectSegment.IsInside(polygon1, 4, p);
             Console.WriteLine(result);
             Assert.AreEqual("False", result.ToString());
+        }
+
+        [TestMethod]
+        public void TestIntersectSegmentJarvisorWrapping()
+        {
+            Point[] points = new Point[] { new Point { X = 0, Y = 3 }, new Point { X = 2, Y = 2}, new Point { X = 1, Y = 1 }, new Point { X = 2, Y = 1 }
+            ,new Point { X = 3, Y = 0 },   new Point { X = 0, Y = 0 } , new Point { X = 3, Y = 3}};
+
+            List<Point> result = IntersectSegment.ConvexHullJarvis(points, 7);
+
+            foreach (var item in result)
+            {
+                Console.Error.WriteLine(item);
+            }
         }
     }
 }

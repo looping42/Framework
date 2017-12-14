@@ -108,5 +108,56 @@ namespace Framework.IntersectSegment
             // Return true if count is odd, false otherwise
             return count % 2 == 1;  // Same as (count%2 == 1)
         }
+
+        // Prints convex hull of a set of n points.
+        /// <summary>
+        /// Récupére la liste des points qui entoure tout les autres
+        /// le point de départ se situe le plus à gauche
+        /// </summary>
+        /// <param name="points"></param>
+        /// <param name="n">nomber de point en paramétres minimum de 3</param>
+        public static List<Point> ConvexHullJarvis(Point[] points, int n)
+        {
+            List<Point> hull = new List<Point>();
+            // There must be at least 3 points
+            if (n < 3) return hull;
+
+            // Recherche du point le plus à gauche
+            int l = 0;
+            for (int i = 1; i < n; i++)
+                if (points[i].X < points[l].X)
+                    l = i;
+
+            // Start from leftmost point, keep moving counterclockwise
+            // until reach the start point again.  This loop runs O(h)
+            // times where h is number of points in result or output.
+            int p = l, q;
+            do
+            {
+                // Add current point to result
+                hull.Add(points[p]);
+
+                // Search for a point 'q' such that orientation(p, x,
+                // q) is counterclockwise for all points 'x'. The idea
+                // is to keep track of last visited most counterclock-
+                // wise point in q. If any point 'i' is more counterclock-
+                // wise than q, then update q.
+                q = (p + 1) % n;
+                for (int i = 0; i < n; i++)
+                {
+                    // If i is more counterclockwise than current q, then
+                    // update q
+                    if (Orientation(points[p], points[i], points[q]) == 2)
+                        q = i;
+                }
+
+                // Now q is the most counterclockwise with respect to p
+                // Set p as q for next iteration, so that q is added to
+                // result 'hull'
+                p = q;
+            } while (p != l);  // While we don't come to first point
+
+            return hull;
+        }
     }
 }
