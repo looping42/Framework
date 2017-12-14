@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace Framework.IntersectSegment
 {
+    /// <summary>
+    /// Vérifie si les lignes p1 et q1 et la ligne p2 et q2
+    ///
+    ///
+    /// </summary>
     public static class IntersectSegment
     {
         public static bool DoIntersect(Point p1, Point q1, Point p2, Point q2)
@@ -32,6 +37,13 @@ namespace Framework.IntersectSegment
             return false; // Doesn’t fall in any of the above cases
         }
 
+        /// <summary>
+        /// Trouve l'orientation necessaire pour atteindre le point r
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="q"></param>
+        /// <param name="r"></param>
+        /// <returns>sens des aiguile d'une montre ou inversé ou colinéaire</returns>
         private static int Orientation(Point p, Point q, Point r)
         {
             // See 10th slides from following link for derivation of the formula
@@ -42,6 +54,13 @@ namespace Framework.IntersectSegment
             return (val > 0) ? 1 : 2; // clock or counterclock wise
         }
 
+        /// <summary>
+        /// Vérifie si le point q se trouve sur la droite p-r
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="q"></param>
+        /// <param name="r"></param>
+        /// <returns>booléen</returns>
         private static bool OnSegment(Point p, Point q, Point r)
         {
             if (q.X <= Math.Max(p.X, r.X) && q.X >= Math.Min(p.X, r.X) &&
