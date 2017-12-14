@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest2.cs" />
     <Compile Include="UnitIntersectSegment.cs" />
+    <Compile Include="UnitPrim.cs" />
     <Compile Include="UnitTestBinaryTree.cs" />
     <Compile Include="UnitTestBTree.cs" />
     <Compile Include="UnitTestBTreeV2.cs" />

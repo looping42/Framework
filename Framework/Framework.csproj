@@ -153,6 +153,7 @@
     <Compile Include="Graph\Prim\Kruskal.cs" />
     <Compile Include="Graph\Prim\MinimumSpanningTree.cs" />
     <Compile Include="Graph\Prim\Prim.cs" />
+    <Compile Include="Graph\Prim\PrimV2.cs" />
     <Compile Include="Img\Image.cs" />
     <Compile Include="IntersectSegment\IntersectSegment.cs" />
     <Compile Include="Log\ConsoleListener.cs" />

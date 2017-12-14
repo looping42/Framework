@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace Framework.IntersectSegment
 {
     /// <summary>
-    /// Vérifie si les lignes p1 et q1 et la ligne p2 et q2
-    ///
+    /// Vérifie si les lignes p1 et q1 et la ligne p2 et q2 se croise
+    /// si c'est le cas renvoie true sinon false
     ///
     /// </summary>
     public static class IntersectSegment
