@@ -10,18 +10,21 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestBackTrackLabyrint()
         {
-            int[,] maze =  { {1, 0, 0, 0},
-        {1, 1, 0, 1},
-        {0, 1, 0, 0},
-        {1, 1, 1, 1}
+            int[,] maze =  {    {1, 1, 1, 0},
+                                {0, 0, 1, 0},
+                                {1, 1, 1, 0},
+                                {1, 0, 0, 0},
+                                {1, 1, 1, 1}
     };
             int[,] sol = { {0, 0, 0, 0},
 
-        {0, 0, 0, 0},
-        {0, 0, 0, 0},
-        {0, 0, 0, 0}
+                        {0, 0, 0, 0},
+                        {0, 0, 0, 0},
+                        {0, 0, 0, 0},
+                         {0, 0, 0, 0}
     };
-            BackTrackLabyrint.solveMaze(maze, 0, 0, sol);
+            BackTrackLabyrint.solveMaze(maze, 0, 0, sol, "down");
+            BackTrackLabyrint.printSolution(sol);
         }
     }
 }
