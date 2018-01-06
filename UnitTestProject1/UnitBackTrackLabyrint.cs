@@ -23,8 +23,8 @@ namespace UnitTestProject1
                         {0, 0, 0, 0},
                          {0, 0, 0, 0}
     };
-            BackTrackLabyrint.solveMaze(maze, 0, 0, sol, "down");
-            BackTrackLabyrint.printSolution(sol);
+            BackTrackLabyrint.SolveMaze(maze, 0, 0, sol, "down");
+            BackTrackLabyrint.PrintSolution(sol);
         }
     }
 }
